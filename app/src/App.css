@@ -3,9 +3,9 @@
 }
 
 .App-logo {
-  height: 20vmin;
-  position: absolute;
-  top: 50px;
+  height: 20vh;
+  position: fixed;
+  top: 30px;
 }
 
 .App-header {

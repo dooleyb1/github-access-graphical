@@ -1,5 +1,6 @@
 .Form {
   display: flex;
+  height: 20vh;
   flex-direction: column;
   align-items: center;
   justify-content: center;
@@ -8,8 +9,9 @@
 }
 
 .demoForm {
-	width: 300px;
-	position: absolute;
+  height: 20vh;
+	width: 40vh;
+	position: fixed;
   top: 200px;
 	margin: auto;
 }

@@ -6,52 +6,21 @@
 }
 
 .User-icon {
-  height: 20vmin;
+  height: 20vh;
   top: 220px;
-  position: absolute;
-  margin: auto;
+  position: fixed;
 }
 
-.User-name {
+.User-details {
+  height: 80vh;
+  width: 80vh;
+  position: fixed;
+  color: white;
   top: 400px;
-  position: absolute;
-  margin: auto;
-  color: white;
-}
-
-.User-bio {
-  top: 420px;
-  position: absolute;
-  margin: auto;
-  color: white;
 }
 
 .User-blog {
-  top: 440px;
-  position: absolute;
-  margin: auto;
   color: #61dafb;
-}
-
-.User-followers {
-  top: 460px;
-  position: absolute;
-  margin: auto;
-  color: white;
-}
-
-.User-following {
-  top: 480px;
-  position: absolute;
-  margin: auto;
-  color: white;
-}
-
-.User-repos {
-  top: 500px;
-  position: absolute;
-  margin: auto;
-  color: white;
 }
 
 .Button {

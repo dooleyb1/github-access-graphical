@@ -7,12 +7,13 @@ class UserCard extends Component {
     return (
       <div className="User-card">
         <img src={this.props.data.avatar_url} onClick={this.props.onReturn} className="User-icon" alt="user icon"/>
-        <p className="User-name">{this.props.data.name}</p>
-        <p className="User-bio">{this.props.data.bio}</p>
-        <a className="User-blog" href={this.props.data.blog} target="_blank" rel="noopener noreferrer">Blog</a>
-        <p className="User-followers">Followers: {this.props.data.followers}</p>
-        <p className="User-following">Following: {this.props.data.following}</p>
-        <p className="User-repos">Public Repos: {this.props.data.public_repos}</p>
+        <div className="User-details">
+          <p>{this.props.data.name}</p>
+          <p>{this.props.data.bio}</p>
+          <p>Followers: {this.props.data.followers} | Following: {this.props.data.following}</p>
+          <p>Public Repos: {this.props.data.public_repos}</p>
+          <a className="User-blog" href={this.props.data.blog} target="_blank" rel="noopener noreferrer">Blog</a>
+        </div>
         <div className="Button">
           <button type="submit" className="btn btn-primary" onClick={this.props.onReturn}>Return</button>
         </div>
