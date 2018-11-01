@@ -17,6 +17,7 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleReturn = this.handleReturn.bind(this);
   }
 
   handleChange(event) {
@@ -34,6 +35,13 @@ class App extends Component {
     });
   }
 
+  handleReturn(event) {
+
+    this.setState({username: ''});
+    this.setState({submitted: false});
+    this.setState({userData: ''});
+  }
+
   render() {
     return (
       <div className="App">
@@ -42,7 +50,7 @@ class App extends Component {
         </header>
         <div>
           {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>}
-          {this.state.submitted && <UserCard data={this.state.userData}/>}
+          {this.state.submitted && <UserCard data={this.state.userData} onReturn={this.handleReturn}/>}
         </div>
       </div>
     );

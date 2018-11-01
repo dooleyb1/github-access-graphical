@@ -53,3 +53,10 @@
   margin: auto;
   color: white;
 }
+
+.Button {
+  width: 300px;
+  position: absolute;
+  top: 550px;
+  margin: auto;
+}
