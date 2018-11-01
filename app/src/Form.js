@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Form.css';
+const octokit = require('@octokit/rest')()
 
 class Form extends Component {
 
@@ -14,12 +15,14 @@ class Form extends Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    this.setState({username: event.target.value});
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
+    console.log('A name was submitted: ' + this.state.username);
     event.preventDefault();
+
+    octokit.users.getForUser({username: this.state.username}).then(result => {console.log(result)});
   }
 
   errorClass(error) {
