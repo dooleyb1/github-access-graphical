@@ -10,20 +10,10 @@ class Form extends Component {
       username: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // this.handleChange = this.handleChange.bind(this);
+    // this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
-    this.setState({username: event.target.value});
-  }
-
-  handleSubmit(event) {
-    console.log('A name was submitted: ' + this.state.username);
-    event.preventDefault();
-
-    octokit.users.getForUser({username: this.state.username}).then(result => {console.log(result)});
-  }
 
   errorClass(error) {
     return(error.length === 0 ? '' : 'has-error');
@@ -31,14 +21,14 @@ class Form extends Component {
 
   render () {
     return (
-      <form className="demoForm" onSubmit={this.handleSubmit}>
+      <form className="demoForm" onSubmit={this.props.onSubmit}>
         <label htmlFor="username">GitHub Access</label>
         <div className="panel panel-default">
         </div>
         <div className={`form-group`}>
           <input type="text" required className="form-control" name="username"
             placeholder="GitHub Username"
-            onChange={this.handleChange}/>
+            onChange={this.props.onChangeValue}/>
         </div>
         <button type="submit" className="btn btn-primary">Find Me</button>
       </form>
