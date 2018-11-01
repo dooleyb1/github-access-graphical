@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import './App.css';
 import Form from './Form.js';
+import UserCard from './UserCard.js'
+const octokit = require('@octokit/rest')()
 
 class App extends Component {
 
   constructor (props) {
     super(props);
+
     this.state = {
       username: '',
       submitted: false,
-      data: '',
+      userData: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -21,12 +24,14 @@ class App extends Component {
   }
 
   handleSubmit(event) {
-    //console.log('A name was submitted: ' + this.state.username);
+
     event.preventDefault();
-    this.state.submitted = true;
-    console.log('A name was submitted: ' + this.state.username);
-    console.log('this.props.submitted: ' + this.state.submitted);
-    //octokit.users.getForUser({username: this.state.username}).then(result => {console.log(result)});
+
+    octokit.users.getForUser({username: this.state.username}).then(result => {
+      this.setState({userData: result.data});
+      this.setState({submitted: true});
+      console.log(this.state.userData);
+    });
   }
 
   render() {
@@ -34,8 +39,11 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
           <img src={ require('./images/gh2.png') } className="App-logo" alt="logo" />
-          <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>
         </header>
+        <div>
+          {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>}
+          {this.state.submitted && <UserCard data={this.state.userData}/>}
+        </div>
       </div>
     );
   }

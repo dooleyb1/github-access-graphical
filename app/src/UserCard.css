@@ -1,0 +1,55 @@
+.User-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.User-icon {
+  height: 20vmin;
+  top: 220px;
+  position: absolute;
+  margin: auto;
+}
+
+.User-name {
+  top: 400px;
+  position: absolute;
+  margin: auto;
+  color: white;
+}
+
+.User-bio {
+  top: 420px;
+  position: absolute;
+  margin: auto;
+  color: white;
+}
+
+.User-blog {
+  top: 440px;
+  position: absolute;
+  margin: auto;
+  color: #61dafb;
+}
+
+.User-followers {
+  top: 460px;
+  position: absolute;
+  margin: auto;
+  color: white;
+}
+
+.User-following {
+  top: 480px;
+  position: absolute;
+  margin: auto;
+  color: white;
+}
+
+.User-repos {
+  top: 500px;
+  position: absolute;
+  margin: auto;
+  color: white;
+}
