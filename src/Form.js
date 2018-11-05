@@ -9,8 +9,8 @@ class Form extends Component {
 
   render () {
     return (
-      <div className="Form">
-        <form className="demoForm" onSubmit={this.props.onSubmit}>
+      <div className="form">
+        <form className="demo-form" onSubmit={this.props.onSubmit}>
           <label htmlFor="username">GitHub Access</label>
           <div className="panel panel-default">
           </div>

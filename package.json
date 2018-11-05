@@ -7,8 +7,11 @@
     "bootstrap": "^3.3.7",
     "express": "^4.16.4",
     "react": "^16.6.0",
+    "react-bootstrap": "^0.32.4",
     "react-dom": "^16.6.0",
-    "react-scripts": "2.1.0"
+    "react-scripts": "2.1.0",
+    "sierra-library": "^3.0.10",
+    "simple-flexbox": "^1.2.0"
   },
   "scripts": {
     "start": "PORT=3306 react-scripts start",

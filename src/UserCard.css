@@ -1,31 +1,25 @@
-.User-card {
-  display: flex;
-  flex-direction: column;
+.user-card {
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
   align-items: center;
-  justify-content: center;
 }
 
-.User-icon {
+.user-icon {
   height: 20vh;
-  top: 220px;
-  position: fixed;
+  border-radius: 50%;
 }
 
-.User-details {
-  height: 80vh;
-  width: 80vh;
-  position: fixed;
+.user-details {
+  margin-top: 2.5%;
   color: white;
-  top: 400px;
 }
 
-.User-blog {
+.user-blog {
   color: #61dafb;
 }
 
-.Button {
-  width: 300px;
-  position: absolute;
-  top: 550px;
-  margin: auto;
+.return-button {
+  margin-top: 2.5%;
 }

@@ -1,22 +1,18 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 20vh;
+.app {
   position: fixed;
-  top: 30px;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background-color: #282c34;
+  z-index: 10;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.app-logo {
+  display: block;
+  margin-top: 2.5%;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .App-link {
