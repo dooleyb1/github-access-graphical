@@ -33,6 +33,10 @@ class App extends Component {
       this.setState({submitted: true});
       console.log(this.state.userData);
     });
+
+    octokit.repos.getForUser({username: this.state.username}).then(result => {
+      console.log(result.data);
+    });
   }
 
   handleReturn(event) {

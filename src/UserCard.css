@@ -49,3 +49,7 @@
   border-left: 1px solid grey;
   height: calc(100% + 50px);
 }
+
+.repo-dropdown {
+  margin-top: 3.0%;
+}

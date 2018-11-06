@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './UserCard.css';
-import { Column, Row } from 'simple-flexbox';
+import { DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
 
 class UserCard extends Component {
 
@@ -17,6 +17,18 @@ class UserCard extends Component {
                 <p>Public Repos: {this.props.data.public_repos}</p>
               </div>
               <a className="user-blog" href={this.props.data.blog} target="_blank" rel="noopener noreferrer">Blog</a>
+              <div className="repo-dropdown">
+                  <DropdownButton
+                    title="View user repo"
+                    id="dropdown-size-medium"
+                    >
+                    <MenuItem eventKey="1">Action</MenuItem>
+                    <MenuItem eventKey="2">Another action</MenuItem>
+                    <MenuItem eventKey="3">Something else here</MenuItem>
+                    <MenuItem divider />
+                    <MenuItem eventKey="4">Separated link</MenuItem>
+                  </DropdownButton>
+              </div>
               <div className="return-button">
                 <button type="submit" className="btn btn-primary" onClick={this.props.onReturn}>Return</button>
               </div>
