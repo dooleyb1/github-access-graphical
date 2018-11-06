@@ -11,6 +11,7 @@ class UserCard extends Component {
     this.state = {
       repoSelected: false,
       repoDict: [],
+      title: "View user repo"
     };
 
     this.generateMenuItems = this.generateMenuItems.bind(this);
@@ -37,11 +38,13 @@ class UserCard extends Component {
   onSelelectRepo = (repoKey) => {
     console.log("Repo selected " + repoKey);
     console.log(this.repoDict[repoKey]);
+    this.setState({title: this.repoDict[repoKey]});
 
     //Get the given repo
     octokit.repos.get({owner: this.props.userData.login, repo: this.repoDict[repoKey][0]}).then(result => {
       console.log("Language => " + result.data.language);
     });
+
   }
 
   render () {
@@ -58,7 +61,7 @@ class UserCard extends Component {
               </div>
               <a className="user-blog" href={this.props.userData.blog} target="_blank" rel="noopener noreferrer">Blog</a>
               <div className="repo-dropdown">
-                  <DropdownButton title="View user repo" id="dropdown-size-medium">
+                  <DropdownButton title={this.state.title} id="dropdown-size-medium">
                     {this.generateMenuItems(this.props.repoData)}
                   </DropdownButton>
               </div>
