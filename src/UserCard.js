@@ -1,32 +1,65 @@
 import React, { Component } from 'react';
 import './UserCard.css';
-import { DropdownButton, MenuItem, ButtonToolbar } from 'react-bootstrap';
+import { DropdownButton, MenuItem } from 'react-bootstrap';
+const octokit = require('@octokit/rest')();
 
 class UserCard extends Component {
+
+  constructor (props) {
+    super(props);
+
+    this.state = {
+      repoSelected: false,
+      repoDict: [],
+    };
+
+    this.generateMenuItems = this.generateMenuItems.bind(this);
+    this.onSelelectRepo = this.onSelelectRepo.bind(this);
+  }
+
+  generateMenuItems = (repoData) => {
+
+    let menuItems = [];
+    let repoDictBuffer = [];
+
+    // Loop over all repos creating a menu item for each
+    for (var i = 0; i < repoData.length; i++) {
+      //console.log(repoData[i].name);
+      menuItems.push(<MenuItem eventKey={i} onSelect={this.onSelelectRepo}>{repoData[i].name}</MenuItem>);
+      repoDictBuffer.push([repoData[i].name]);
+    }
+
+    //console.log(repoDictBuffer);
+    this.repoDict = repoDictBuffer;
+    return menuItems;
+  }
+
+  onSelelectRepo = (repoKey) => {
+    console.log("Repo selected " + repoKey);
+    console.log(this.repoDict[repoKey]);
+
+    //Get the given repo
+    octokit.repos.get({owner: this.props.userData.login, repo: this.repoDict[repoKey][0]}).then(result => {
+      console.log("Language => " + result.data.language);
+    });
+  }
 
   render () {
     return (
         <div className="container">
           <div className="g grid-45">
             <div className="user-card">
-              <img className="user-icon" src={this.props.data.avatar_url} alt="user icon"/>
+              <img className="user-icon" src={this.props.userData.avatar_url} alt="user icon"/>
               <div className="user-details">
-                <p>{this.props.data.name}</p>
-                <p>{this.props.data.bio}</p>
-                <p>Followers: {this.props.data.followers} | Following: {this.props.data.following}</p>
-                <p>Public Repos: {this.props.data.public_repos}</p>
+                <p>{this.props.userData.name}</p>
+                <p>{this.props.userData.bio}</p>
+                <p>Followers: {this.props.userData.followers} | Following: {this.props.userData.following}</p>
+                <p>Public Repos: {this.props.userData.public_repos}</p>
               </div>
-              <a className="user-blog" href={this.props.data.blog} target="_blank" rel="noopener noreferrer">Blog</a>
+              <a className="user-blog" href={this.props.userData.blog} target="_blank" rel="noopener noreferrer">Blog</a>
               <div className="repo-dropdown">
-                  <DropdownButton
-                    title="View user repo"
-                    id="dropdown-size-medium"
-                    >
-                    <MenuItem eventKey="1">Action</MenuItem>
-                    <MenuItem eventKey="2">Another action</MenuItem>
-                    <MenuItem eventKey="3">Something else here</MenuItem>
-                    <MenuItem divider />
-                    <MenuItem eventKey="4">Separated link</MenuItem>
+                  <DropdownButton title="View user repo" id="dropdown-size-medium">
+                    {this.generateMenuItems(this.props.repoData)}
                   </DropdownButton>
               </div>
               <div className="return-button">

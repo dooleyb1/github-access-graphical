@@ -53,3 +53,8 @@
 .repo-dropdown {
   margin-top: 3.0%;
 }
+
+.dropdown-menu {
+  height: 150px;
+  overflow-y: scroll;
+}

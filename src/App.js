@@ -13,6 +13,7 @@ class App extends Component {
       username: '',
       submitted: false,
       userData: '',
+      repoData: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,15 +29,20 @@ class App extends Component {
 
     event.preventDefault();
 
+    // Get User details from REST API
     octokit.users.getForUser({username: this.state.username}).then(result => {
       this.setState({userData: result.data});
-      this.setState({submitted: true});
       console.log(this.state.userData);
     });
 
+    // Get User Repo details from REST API
     octokit.repos.getForUser({username: this.state.username}).then(result => {
+      this.setState({repoData: result.data});
       console.log(result.data);
     });
+
+    // Set to be submitted
+    this.setState({submitted: true});
   }
 
   handleReturn(event) {
@@ -52,7 +58,7 @@ class App extends Component {
         <img src={ require('./images/gh2.png') } className="app-logo" alt="logo" />
         <div>
           {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>}
-          {this.state.submitted && <UserCard data={this.state.userData} onReturn={this.handleReturn}/>}
+          {this.state.submitted && <UserCard userData={this.state.userData} repoData={this.state.repoData} onReturn={this.handleReturn}/>}
         </div>
       </div>
     );
