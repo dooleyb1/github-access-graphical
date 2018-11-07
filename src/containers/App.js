@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
+import '../css/App.css';
 import Form from './Form.js';
-import UserCard from './UserCard.js';
+import UserPage from './UserPage.js';
 const octokit = require('@octokit/rest')();
 
 class App extends Component {
@@ -55,10 +55,10 @@ class App extends Component {
   render() {
     return (
       <div className="app">
-        <img src={ require('./images/gh2.png') } className="app-logo" alt="logo" />
+        <img src={ require('../images/gh2.png') } className="app-logo" alt="logo" />
         <div>
           {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>}
-          {this.state.submitted && <UserCard userData={this.state.userData} repoData={this.state.repoData} onReturn={this.handleReturn}/>}
+          {this.state.submitted && <UserPage userData={this.state.userData} repoData={this.state.repoData} onReturn={this.handleReturn}/>}
         </div>
       </div>
     );

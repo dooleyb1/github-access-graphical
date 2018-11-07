@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 15px 15px 15px 15px;
+}
+
+.g {
+  padding: 15px;
+  color: white;
+  font: 14px Arial;
+  margin: 15px 15px 15px 15px;
+}
+
+.grid-5 {
+  width: calc(5% - 15px);
+}
+
+.vertical-line {
+  border-left: 1px solid grey;
+  height: calc(100% + 50px);
+}
