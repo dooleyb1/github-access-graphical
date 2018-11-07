@@ -32,13 +32,13 @@ class App extends Component {
     // Get User details from REST API
     octokit.users.getForUser({username: this.state.username}).then(result => {
       this.setState({userData: result.data});
-      console.log(this.state.userData);
+      //console.log(this.state.userData);
     });
 
     // Get User Repo details from REST API
     octokit.repos.getForUser({username: this.state.username}).then(result => {
       this.setState({repoData: result.data});
-      console.log(result.data);
+      //console.log(result.data);
     });
 
     // Set to be submitted

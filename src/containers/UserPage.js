@@ -3,7 +3,6 @@ import '../css/UserPage.css';
 import UserProfile from './UserProfile.js';
 import UserRepos from './UserRepos.js';
 import VerticalLine from './VerticalLine.js';
-const octokit = require('@octokit/rest')();
 
 class UserPage extends Component {
 
@@ -19,7 +18,7 @@ class UserPage extends Component {
   }
 
   async onSelelectRepo(repoKey, repoDict) {
-    console.log("Repo selected " + repoKey + "[" + repoDict[repoKey] + "]");
+    //console.log("Repo selected " + repoKey + "[" + repoDict[repoKey] + "]");
     this.setState({title: repoDict[repoKey]});
 
     // Mark repoSelected as true
