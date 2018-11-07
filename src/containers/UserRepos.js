@@ -5,8 +5,14 @@ class UserRepos extends Component {
 
   render () {
     return (
-      <h3> Column 3 </h3>
-      <span> column 3 content </span>
+      <div className="g grid-45">
+        <h3> {this.props.selectedRepoData.name} </h3>
+        <p> Language -> {this.props.selectedRepoData.language} </p>
+        <p> Subscribers -> {this.props.selectedRepoData.subscribers_count} </p>
+        <p> Watchers -> {this.props.selectedRepoData.watchers} </p>
+        <p> Created At -> {this.props.selectedRepoData.created_at} </p>
+        <a href={this.props.selectedRepoData.html_url} target="_blank" rel="noopener noreferrer">Repository Link</a>
+      </div>
     )
   }
 }

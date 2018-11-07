@@ -10,12 +10,3 @@
   font: 14px Arial;
   margin: 15px 15px 15px 15px;
 }
-
-.grid-5 {
-  width: calc(5% - 15px);
-}
-
-.vertical-line {
-  border-left: 1px solid grey;
-  height: calc(100% + 50px);
-}

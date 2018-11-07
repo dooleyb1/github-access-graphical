@@ -1,0 +1,10 @@
+.g {
+  padding: 15px;
+  color: white;
+  font: 14px Arial;
+  margin: 15px 15px 15px 15px;
+}
+
+.grid-45 {
+  width: calc(45% - 15px);
+}
