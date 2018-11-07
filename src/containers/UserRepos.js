@@ -25,7 +25,7 @@ class UserRepos extends Component {
 
   async componentDidMount() {
     const repo_result = await octokit.repos.get({owner: this.props.owner, repo: this.props.repo})
-    const commits_result = await octokit.repos.getCommits({owner: this.props.owner, repo: this.props.repo})
+    const commits_result = await octokit.repos.getCommits({owner: this.props.owner, repo: this.props.repo, per_page: 100})
     const repo_data = await repo_result.data;
     const commit_data = await commits_result.data;
 
@@ -48,40 +48,22 @@ class UserRepos extends Component {
 
   async getRepoGraphData(commits_json){
 
+    console.log(commits_json)
     var commitCounts = {};
-    var mostRecentCommitDate = '';
-    var thirtyDaysPrevious = '';
 
     // Loop over every commit
     for(var commit in commits_json){
 
-      //Check most recent commit
-      if(commit === 0){
-        mostRecentCommitDate = new Date (commits_json[commit].commit.author.date);
-        // console.log("Most recent date -> " + mostRecentCommitDate);
+      var commitDate = new Date(commits_json[commit].commit.author.date.substring(0,10))
 
-        thirtyDaysPrevious = new Date (mostRecentCommitDate);
-        thirtyDaysPrevious.setDate(thirtyDaysPrevious.getDate() - 30)
-        // console.log("Thirty days previous -> " + thirtyDaysPrevious);
+      // If commit count exists for that day, increment
+      if(commitCounts[commitDate]){
+        commitCounts[commitDate]++;
+      } else {
+        commitCounts[commitDate] = 1;
       }
-
-      var commitDate = new Date(commits_json[commit].commit.author.date);
-
-      // Ensure commit is within 30 days
-      if(commitDate > thirtyDaysPrevious){
-        // console.log(commitDate + " is less than 30 days")
-        // Otherwise handle commit as normal
-        commitDate = new Date(commits_json[commit].commit.author.date.substring(0,10))
-
-        // If commit count exists for that day, increment
-        if(commitCounts[commitDate]){
-          commitCounts[commitDate]++;
-        } else {
-          commitCounts[commitDate] = 1;
-        }
-      }
-
     }
+    console.log(commitCounts);
 
     return commitCounts;
   }
