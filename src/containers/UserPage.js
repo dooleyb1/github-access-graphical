@@ -3,6 +3,7 @@ import '../css/UserPage.css';
 import UserProfile from './UserProfile.js';
 import UserRepos from './UserRepos.js';
 import VerticalLine from './VerticalLine.js';
+const octokit = require('@octokit/rest')();
 
 class UserPage extends Component {
 
@@ -11,6 +12,7 @@ class UserPage extends Component {
 
     this.state = {
       repoSelected: false,
+      repoData: {},
       title: "View user repo"
     };
 
@@ -21,6 +23,18 @@ class UserPage extends Component {
     //console.log("Repo selected " + repoKey + "[" + repoDict[repoKey] + "]");
     this.setState({title: repoDict[repoKey]});
 
+    octokit.repos.get({owner: this.props.userData.login, repo: repoDict[repoKey]}).then(result => {
+      this.setState({repoData: {
+        name: result.data.name,
+        language: result.data.language,
+        subscribers_count: result.data.subscribers_count,
+        watchers: result.data.watchers,
+        created_at: result.data.created_at,
+        html_url: result.data.html_url
+      }})
+    })
+
+    console.log(this.state.repoData)
     // Mark repoSelected as true
     this.setState({repoSelected: true});
   }
@@ -36,7 +50,7 @@ class UserPage extends Component {
             title={this.state.title}
           />
           <VerticalLine/>
-          {this.state.repoSelected && <UserRepos owner={this.props.userData.login} repo={this.state.title}/>}
+          {this.state.repoSelected && <UserRepos owner={this.props.userData.login} repoData={this.state.repoData}/>}
         </div>
     )
   }
