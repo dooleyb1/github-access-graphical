@@ -22,6 +22,7 @@ class UserRepos extends Component {
           <p> Watchers -> {this.props.repoData.watchers} </p>
           <p> Created At > {this.props.repoData.created_at} </p>
           <a href={this.props.repoData.html_url} target="_blank" rel="noopener noreferrer">Repository Link</a>
+          {this.props.commitData && <RepoGraph commitData={this.props.commitData}/>}
         </div>
       )
     }

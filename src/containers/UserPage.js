@@ -20,9 +20,9 @@ class UserPage extends Component {
   }
 
   async onSelelectRepo(repoKey, repoDict) {
-    //console.log("Repo selected " + repoKey + "[" + repoDict[repoKey] + "]");
     this.setState({title: repoDict[repoKey]});
 
+    // Get repository information
     octokit.repos.get({owner: this.props.userData.login, repo: repoDict[repoKey]}).then(result => {
       this.setState({repoData: {
         name: result.data.name,
@@ -34,7 +34,29 @@ class UserPage extends Component {
       }})
     })
 
-    console.log(this.state.repoData)
+    // Get commit information for repository
+    octokit.repos.getCommits({owner: this.props.userData.login, repo: repoDict[repoKey], per_page: 100}).then(result => {
+      const commits_json = result.data;
+
+      //console.log(commits_json)
+      var commitCounts = {};
+
+      // Loop over every commit
+      for(var commit in commits_json){
+
+        var commitDate = new Date(commits_json[commit].commit.author.date.substring(0,10))
+
+        // If commit count exists for that day, increment
+        if(commitCounts[commitDate]){
+          commitCounts[commitDate]++;
+        } else {
+          commitCounts[commitDate] = 1;
+        }
+      }
+      
+      this.setState({commitData: commitCounts})
+    })
+
     // Mark repoSelected as true
     this.setState({repoSelected: true});
   }
@@ -50,7 +72,7 @@ class UserPage extends Component {
             title={this.state.title}
           />
           <VerticalLine/>
-          {this.state.repoSelected && <UserRepos owner={this.props.userData.login} repoData={this.state.repoData}/>}
+          {this.state.repoSelected && <UserRepos owner={this.props.userData.login} commitData={this.state.commitData} repoData={this.state.repoData} repo={this.state.repoData.name}/>}
         </div>
     )
   }
