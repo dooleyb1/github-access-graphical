@@ -12,6 +12,7 @@ class UserPage extends Component {
 
     this.state = {
       repoSelected: false,
+      graphData: [],
       repoData: {},
       title: "View user repo"
     };
@@ -53,8 +54,15 @@ class UserPage extends Component {
           commitCounts[commitDate] = 1;
         }
       }
-      
-      this.setState({commitData: commitCounts})
+
+      // Get data for commit graph
+      var data = [];
+
+      for(var node in commitCounts){
+        data.push({x: new Date(node), y: commitCounts[node]})
+      }
+
+      this.setState({graphData: data})
     })
 
     // Mark repoSelected as true
@@ -72,7 +80,7 @@ class UserPage extends Component {
             title={this.state.title}
           />
           <VerticalLine/>
-          {this.state.repoSelected && <UserRepos owner={this.props.userData.login} commitData={this.state.commitData} repoData={this.state.repoData} repo={this.state.repoData.name}/>}
+          {this.state.repoSelected && <UserRepos graphData={this.state.graphData} repoData={this.state.repoData}/>}
         </div>
     )
   }
