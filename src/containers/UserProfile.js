@@ -34,14 +34,16 @@ class UserProfile extends Component {
 
   render () {
     return (
-      <div className="g grid-45">
+      <div className="g grid-20">
         <div className="user-card">
           <img className="user-icon" src={this.props.userData.avatar_url} alt="user icon"/>
-          <div className="user-details">
+          <div className="user-details-primary">
             <p>{this.props.userData.name}</p>
-            <p>{this.props.userData.bio}</p>
-            <p>Followers: {this.props.userData.followers} | Following: {this.props.userData.following}</p>
-            <p>Public Repos: {this.props.userData.public_repos}</p>
+            <p><i>{this.props.userData.bio}</i></p>
+            <div className="user-details-secondary">
+              <p><span style={{color: '#4DD0E1'}}>Followers:</span> {this.props.userData.followers} | <span style={{color: '#4DD0E1'}}>Following:</span> {this.props.userData.following}</p>
+              <p><span style={{color: '#4DD0E1'}}>Public Repos:</span> {this.props.userData.public_repos}</p>
+            </div>
           </div>
           <a className="user-blog" href={this.props.userData.blog} target="_blank" rel="noopener noreferrer">Blog</a>
           <div className="repo-dropdown">

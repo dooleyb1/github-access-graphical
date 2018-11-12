@@ -1,12 +1,10 @@
 .g {
-  padding: 15px;
   color: white;
   font: 14px Arial;
-  margin: 15px 15px 15px 15px;
 }
 
-.grid-45 {
-  width: calc(45% - 15px);
+.grid-20 {
+  width: calc(20% - 15px);
 }
 
 .user-card {
@@ -22,8 +20,13 @@
   border-radius: 50%;
 }
 
-.user-details {
-  margin-top: 3.5%;
+.user-details-primary {
+  margin-top: 10.5%;
+  color: white;
+}
+
+.user-details-secondary {
+  margin-top: 12.0%;
   color: white;
 }
 
@@ -36,10 +39,10 @@
 }
 
 .repo-dropdown {
-  margin-top: 3.0%;
+  margin-top: 10.0%;
 }
 
 .dropdown-menu {
-  height: 150px;
+  height: 100px;
   overflow-y: scroll;
 }

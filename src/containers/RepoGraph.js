@@ -5,10 +5,6 @@ import {XYPlot, LineSeries, XAxis, YAxis} from 'react-vis';
 
 class RepoGraph extends Component {
 
-  constructor (props) {
-    super(props);
-  }
-
   render () {
 
     if(!this.props.graphData){

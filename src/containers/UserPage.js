@@ -62,6 +62,7 @@ class UserPage extends Component {
         data.push({x: new Date(node), y: commitCounts[node]})
       }
 
+      console.log(data)
       this.setState({graphData: data})
     })
 
@@ -71,7 +72,7 @@ class UserPage extends Component {
 
   render () {
     return (
-        <div className="container">
+        <div className="app-container">
           <UserProfile
             onSelect={this.onSelelectRepo}
             repoData={this.props.repoData}

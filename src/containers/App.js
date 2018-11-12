@@ -56,7 +56,7 @@ class App extends Component {
     return (
       <div className="app">
         <img src={ require('../images/gh2.png') } className="app-logo" alt="logo" />
-        <div>
+        <div className="app-container">
           {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>}
           {this.state.submitted && <UserPage userData={this.state.userData} repoData={this.state.repoData} onReturn={this.handleReturn}/>}
         </div>
