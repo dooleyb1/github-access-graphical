@@ -3,12 +3,19 @@
   font: 14px Arial;
 }
 
-.grid-75 {
+.repo-graph {
   width: calc(70% - 15px);
 }
 
-.grid-25 {
+.repo-info {
   width: calc(25% - 15px);
+  margin-right: 0;
+}
+
+.user-repos {
+  width: calc(70% - 15px);
+  color: white;
+  font: 14px Arial;
 }
 
 .repo-container {
@@ -17,4 +24,26 @@
   width: calc(100% - 15px);
   margin-left: auto;
   margin-right: auto;
+}
+
+.row1 {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: calc(70% - 15px);
+  color: white;
+  font: 14px Arial;
+}
+
+.column1 {
+  display: flex;
+  flex-direction: column;
+  width: calc(25% - 15px);
+  margin-right: 0;
+}
+
+.column2 {
+  display: flex;
+  flex-direction: column;
 }

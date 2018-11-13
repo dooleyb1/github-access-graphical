@@ -1,8 +1,6 @@
 .g {
-  padding: 15px;
   color: white;
   font: 14px Arial;
-  margin: 15px 15px 15px 15px;
 }
 
 .grid-5 {
@@ -11,5 +9,7 @@
 
 .vertical-line {
   border-left: 1px solid grey;
-  height: calc(100%);
+  height: calc(100% + 50px);
+  margin-left: 20px;
+  margin-right: 20px;
 }

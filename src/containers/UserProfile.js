@@ -45,7 +45,7 @@ class UserProfile extends Component {
               <p><span style={{color: '#4DD0E1'}}>Public Repos:</span> {this.props.userData.public_repos}</p>
             </div>
           </div>
-          <a className="user-blog" href={this.props.userData.blog} target="_blank" rel="noopener noreferrer">Blog</a>
+          <a className="user-blog" href={this.props.userData.blog} rel="noopener noreferrer">Blog</a>
           <div className="repo-dropdown">
               <DropdownButton title={this.props.title} id="dropdown-size-medium">
                 {this.generateMenuItems(this.props.repoData)}
