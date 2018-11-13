@@ -1,8 +1,3 @@
-import React, { Component } from 'react';
-import '../css/RepoGraph.css';
-import '../../node_modules/react-vis/dist/style.css';
-import {XYPlot, LineSeries, XAxis, YAxis} from 'react-vis';
-
 const CustomAxisLabel = (props/*: {
     title: string,
     xAxis: boolean,
@@ -36,31 +31,3 @@ const CustomAxisLabel = (props/*: {
 
 CustomAxisLabel.displayName = 'CustomAxisLabel';
 CustomAxisLabel.requiresSVG = true;
-
-class RepoGraph extends Component {
-
-  render () {
-
-    if(!this.props.graphData){
-      return(<div></div>)
-    } else{
-      return (
-        <div>
-          <XYPlot
-            xType="time"
-            height={300}
-            width= {500}
-          >
-          <XAxis tickLabelAngle={-90}/>
-          <YAxis/>
-          <CustomAxisLabel title={'This is my Y Axis'}/>
-          <CustomAxisLabel title={'This is my X Axis'} xAxis />
-          <LineSeries data={this.props.graphData} />
-          </XYPlot>
-        </div>
-      )
-    }
-  }
-}
-
-export default RepoGraph;

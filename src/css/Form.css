@@ -13,3 +13,8 @@
 	margin: auto;
   text-align: center;
 }
+
+.invalid-username {
+  color: #4DD0E1;
+  font-size: 16px;
+}

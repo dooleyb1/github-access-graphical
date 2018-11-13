@@ -14,6 +14,7 @@ class App extends Component {
       submitted: false,
       userData: '',
       repoData: '',
+      isValidUsername: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,23 +31,32 @@ class App extends Component {
     event.preventDefault();
 
     // Get User details from REST API
-    octokit.users.getForUser({username: this.state.username}).then(result => {
-      this.setState({userData: result.data});
-      //console.log(this.state.userData);
+    octokit.users.getForUser({username: this.state.username}, (error, result) => {
+      if(error){
+        this.setState({isValidUsername: false});
+        return
+      } else {
+        this.setState({isValidUsername: true});
+        this.setState({userData: result.data});
+      }
     });
 
     // Get User Repo details from REST API
-    octokit.repos.getForUser({username: this.state.username}).then(result => {
-      this.setState({repoData: result.data});
-      //console.log(result.data);
+    octokit.repos.getForUser({username: this.state.username}, (error, result) => {
+      if(error){
+        this.setState({isValidUsername: false})
+        return
+      } else {
+        this.setState({isValidUsername: true});
+        this.setState({repoData: result.data});
+        this.setState({submitted: true});
+      }
     });
-
-    // Set to be submitted
-    this.setState({submitted: true});
   }
 
   handleReturn(event) {
 
+    this.setState({isValidUsername: true});
     this.setState({username: ''});
     this.setState({submitted: false});
     this.setState({userData: ''});
@@ -57,8 +67,8 @@ class App extends Component {
       <div className="app">
         <img src={ require('../images/gh2.png') } className="app-logo" alt="logo" />
         <div className="app-container">
-          {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit}/>}
-          {this.state.submitted && <UserPage userData={this.state.userData} repoData={this.state.repoData} onReturn={this.handleReturn}/>}
+          {!this.state.submitted && <Form onChangeValue={this.handleChange} onSubmit={this.handleSubmit} isValidUsername={this.state.isValidUsername}/>}
+          {this.state.submitted && this.state.isValidUsername && <UserPage userData={this.state.userData} repoData={this.state.repoData} onReturn={this.handleReturn}/>}
         </div>
       </div>
     );

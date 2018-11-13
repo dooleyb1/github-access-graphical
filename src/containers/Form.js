@@ -14,6 +14,7 @@ class Form extends Component {
           <label htmlFor="username">GitHub Access</label>
           <div className="panel panel-default">
           </div>
+          {!this.props.isValidUsername && <p className="invalid-username">Invalid username entered.</p>}
           <div className={`form-group`}>
             <input type="text" required className="form-control" name="username"
               placeholder="GitHub Username"

@@ -25,6 +25,7 @@ class UserPage extends Component {
 
     // Get repository information
     octokit.repos.get({owner: this.props.userData.login, repo: repoDict[repoKey]}).then(result => {
+      // console.log(result)
       this.setState({repoData: {
         name: result.data.name,
         language: result.data.language,
@@ -37,6 +38,7 @@ class UserPage extends Component {
 
     // Get commit information for repository
     octokit.repos.getCommits({owner: this.props.userData.login, repo: repoDict[repoKey], per_page: 100}).then(result => {
+      // console.log(result)
       const commits_json = result.data;
 
       //console.log(commits_json)
