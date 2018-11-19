@@ -18,8 +18,8 @@ const CustomAxisLabel = (props/*: {
     };
 
     const xLabelOffset = {
-        x: props.innerWidth / 2,
-        y: 1.2 * props.innerHeight // 1.2 was enough for me to get it below x axis. you may need a diff't #
+        x: (props.innerWidth / 2) + 30,
+        y: 1.5 * props.innerHeight // 1.2 was enough for me to get it below x axis. you may need a diff't #
     };
     const transform = props.xAxis
         ? `translate(${xLabelOffset.x}, ${xLabelOffset.y})`
@@ -29,7 +29,7 @@ const CustomAxisLabel = (props/*: {
         <g
             transform={transform}
         >
-            <text>{props.title}</text>
+            <text style={{color: '#4DD0E1'}}>{props.title}</text>
         </g>
     );
 };
@@ -47,14 +47,15 @@ class RepoGraph extends Component {
       return (
         <div>
           <XYPlot
+            margin={{left: 50,bottom: 100}}
             xType="time"
             height={300}
             width= {500}
           >
           <XAxis tickLabelAngle={-90}/>
           <YAxis/>
-          <CustomAxisLabel title={'This is my Y Axis'}/>
-          <CustomAxisLabel title={'This is my X Axis'} xAxis />
+          <CustomAxisLabel title={'Commits'}/>
+          <CustomAxisLabel title={'Date'} xAxis />
           <LineSeries data={this.props.graphData} />
           </XYPlot>
         </div>

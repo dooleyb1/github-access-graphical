@@ -2,6 +2,9 @@
   display: flex;
   flex-wrap: wrap;
   width: calc(100% - 15px);
+  height: calc(100%);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .g {

@@ -9,7 +9,7 @@
 
 .vertical-line {
   border-left: 1px solid grey;
-  height: calc(100% + 50px);
+  height: calc(100% - 100px);
   margin-left: 20px;
   margin-right: 20px;
 }

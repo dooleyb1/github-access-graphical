@@ -14,6 +14,7 @@ class UserPage extends Component {
       repoSelected: false,
       graphData: [],
       repoData: {},
+      commitCount: 0,
       title: "View user repo"
     };
 
@@ -66,6 +67,7 @@ class UserPage extends Component {
 
       console.log(data)
       this.setState({graphData: data})
+      this.setState({commitCount: Object.keys(commits_json).length})
     })
 
     // Mark repoSelected as true
@@ -74,7 +76,7 @@ class UserPage extends Component {
 
   render () {
     return (
-        <div className="app-container">
+        <div className="container">
           <UserProfile
             onSelect={this.onSelelectRepo}
             repoData={this.props.repoData}
@@ -83,7 +85,7 @@ class UserPage extends Component {
             title={this.state.title}
           />
           <VerticalLine/>
-          {this.state.repoSelected && <UserRepos graphData={this.state.graphData} repoData={this.state.repoData}/>}
+          {this.state.repoSelected && <UserRepos graphData={this.state.graphData} repoData={this.state.repoData} commitCount={this.state.commitCount}/>}
         </div>
     )
   }
