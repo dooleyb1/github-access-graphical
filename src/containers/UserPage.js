@@ -47,8 +47,10 @@ class UserPage extends Component {
 
       // Loop over every commit
       for(var commit in commits_json){
-
+        //console.log(commits_json[commit].commit.author.date)
+        //console.log(commits_json[commit].commit.author.date.substring(0,10))
         var commitDate = new Date(commits_json[commit].commit.author.date.substring(0,10))
+        //console.log(commitDate)
 
         // If commit count exists for that day, increment
         if(commitCounts[commitDate]){
@@ -62,10 +64,12 @@ class UserPage extends Component {
       var data = [];
 
       for(var node in commitCounts){
+        console.log(new Date(node))
+        console.log(commitCounts[node])
         data.push({x: new Date(node), y: commitCounts[node]})
       }
 
-      console.log(data)
+      //console.log(data)
       this.setState({graphData: data})
       this.setState({commitCount: Object.keys(commits_json).length})
     })
